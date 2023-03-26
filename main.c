@@ -10,9 +10,10 @@ double probability(double, double, double);
 int main(int argc, char *argv[])
 {
 	srand(time(NULL));
+	int time;
 	int time_adjust = 0;
-	Sumplete *game = sumplete_init(9, -19, 19);
-	for(int time = 0; !sumplete_won(game); time++)
+	Sumplete *game = sumplete_init(19, -29, 29);
+	for(time = 0; !sumplete_won(game); time++)
 	{
 		double temp = temperature(time);
 		if(temp <= 0.125)
@@ -26,11 +27,16 @@ int main(int argc, char *argv[])
 		{
 			sumplete_destroy(&game);
 			game = sumplete_copy(new_game);
+		}
+		if((time + time_adjust) % 10000 == 0)
+		{
 			printf("Time: %d, temperature: %lf, energy: %d\n", time + time_adjust, temp, sumplete_energy(game));
 			sumplete_print(game);
 		}
 		sumplete_destroy(&new_game);
 	}
+	printf("Final time: %d\n", time + time_adjust);
+	sumplete_print(game);
 	sumplete_destroy(&game);
 	return 0;
 }
