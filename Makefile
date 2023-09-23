@@ -1,4 +1,6 @@
-main: main.c sumplete.o
-	gcc main.c -o sumplete sumplete.o -lm -O3 -g3
-sumplete.o: sumplete.c
-	gcc -c sumplete.c -O3 -g3
+main: main.cpp sumplete.o
+	g++ main.cpp -o sumplete sumplete.o -g3 -O3 -march=native
+sumplete.o: sumplete.cpp
+	g++ -c sumplete.cpp -g3 -O3 -march=native
+clean:
+	rm sumplete sumplete.o
