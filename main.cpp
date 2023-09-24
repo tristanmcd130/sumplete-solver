@@ -1,8 +1,7 @@
-#include <iostream>
+#include "sumplete.hpp"
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
-#include "sumplete.hpp"
 
 using namespace std;
 
@@ -12,8 +11,38 @@ double probability(double, double, double);
 int main()
 {
 	srand(time(nullptr));
+	int size;
+	cout << "Size: ";
+	cin >> size;
+	vector<vector<int>> board;
+	vector<int> row_sums;
+	vector<int> column_sums;
+	int temp;
+	for(int i = 0; i < size; i++)
+	{
+		vector<int> row;
+		cout << "Row " << i << ": ";
+		for(int j = 0; j < size; j++)
+		{
+			cin >> temp;
+			row.push_back(temp);
+		}
+		board.push_back(row);
+	}
+	cout << "Sums of rows: ";
+	for(int i = 0; i < size; i++)
+	{
+		cin >> temp;
+		row_sums.push_back(temp);
+	}
+	cout << "Sums of columns: ";
+	for(int i = 0; i < size; i++)
+	{
+		cin >> temp;
+		column_sums.push_back(temp);
+	}
+	Sumplete game(board, row_sums, column_sums);
 	int step;
-	Sumplete game(9, -19, 19);
 	for(step = 1; !game.won(); step++)
 	{
 		double temp = temperature(step);

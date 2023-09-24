@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
-using std::ostream;
+using namespace std;
 
 typedef struct cell
 {
@@ -12,17 +13,14 @@ typedef struct cell
 class Sumplete
 {
 	int _size;
-	Cell **_cells;
-	int *_row_sums;
-	int *_column_sums;
+	vector<vector<Cell>> _cells;
+	vector<int> _row_sums;
+	vector<int> _column_sums;
 	int sum_row(int) const;
 	int sum_column(int) const;
 	unsigned long max_width() const;
 	public:
-		Sumplete(int, int, int);
-		Sumplete(const Sumplete &);
-		~Sumplete();
-		Sumplete &operator=(const Sumplete &);
+		Sumplete(vector<vector<int>>, vector<int>, vector<int>);
 		Cell get_cell(int, int) const;
 		int get_size() const;
 		int get_row_sum(int) const;
